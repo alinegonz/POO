@@ -14,7 +14,7 @@ public class ContaDeGaz {
 	private float valorApagar;
 	private String dataDePagamento;
 	private float media;
-	
+	ArrayList <ContaDeGaz> contas = new ArrayList <ContaDeGaz>();
 	
 
 	public float getM3Gasto() {
@@ -62,7 +62,7 @@ public class ContaDeGaz {
 	public boolean cadastrarContaDeGaz(){ 
 		System.out.println(" Digite dados da fatura: ");
 		Scanner sc = new Scanner(System.in);
-		ArrayList <ContaDeGaz> contas = new ArrayList <ContaDeGaz>();
+		
 		ContaDeGaz contadegaz;
 		String sim;
 		
@@ -91,7 +91,7 @@ public class ContaDeGaz {
 			}  
 		   
 		
-		System.out.println("media");// media é um atributo mesmo ou um metodo?
+		System.out.println("media");// media Ã© um atributo mesmo ou um metodo?
 		contadegaz.setMedia(sc.nextFloat());
 		
 		
