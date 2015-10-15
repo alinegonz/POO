@@ -9,12 +9,12 @@ import java.util.Scanner;
 
 public class ContaDeGaz {
 
-	private String dataDeLeitura;
+	private Date dataDeLeitura;
 	private float m3Gasto;
 	private float valorApagar;
-	private String dataDePagamento;
+	private Date dataDePagamento;
 	private float media;
-	ArrayList <ContaDeGaz> contas = new ArrayList <ContaDeGaz>();
+	public static ArrayList <ContaDeGaz> contas = new ArrayList <ContaDeGaz>();
 	
 
 	public float getM3Gasto() {
@@ -35,19 +35,19 @@ public class ContaDeGaz {
 
 	
 
-	public String getDataDeLeitura() {
+	public Date getDataDeLeitura() {
 		return dataDeLeitura;
 	}
 
-	public void setDataDeLeitura(String dataDeLeitura) {
+	public void setDataDeLeitura(Date dataDeLeitura) {
 		this.dataDeLeitura = dataDeLeitura;
 	}
 
-	public String getDataDePagamento() {
+	public Date getDataDePagamento() {
 		return dataDePagamento;
 	}
 
-	public void setDataDePagamento(String dataDePagamento) {
+	public void setDataDePagamento(Date dataDePagamento) {
 		this.dataDePagamento = dataDePagamento;
 	}
 
@@ -59,16 +59,14 @@ public class ContaDeGaz {
 		this.media = media;
 	}
 
+	Scanner sc;
 	public boolean cadastrarContaDeGaz(){ 
 		System.out.println(" Digite dados da fatura: ");
-		Scanner sc = new Scanner(System.in);
 		
-		ContaDeGaz contadegaz;
-		String sim;
+		sc = new Scanner(System.in);
+		ContaDeGaz contadegaz = new ContaDeGaz();
 		
 		do {
-			
-		contadegaz = new ContaDeGaz(); 
 		
 		System.out.println("m3Gasto");
 		contadegaz.setM3Gasto(sc.nextFloat());
@@ -78,7 +76,7 @@ public class ContaDeGaz {
 		
 		try {
 		System.out.println("dataDePagamento");
-		contadegaz.setDataDePagamento(sc.next());
+		String dataDePagamento = sc.next());
 		
 		
 		 DateFormat df = new SimpleDateFormat("dd/MM/yyyy");    
@@ -90,6 +88,7 @@ public class ContaDeGaz {
 				e.printStackTrace();
 			}  
 		   
+		contadegaz.setDate(dt);
 		
 		System.out.println("media");// media é um atributo mesmo ou um metodo?
 		contadegaz.setMedia(sc.nextFloat());
@@ -118,8 +117,15 @@ public class ContaDeGaz {
 		sc.close();
 		return true;
 	}
-	public void verificaMenorConsumo(){
-		
+	public int verificaMenorConsumo(){
+		int menorConsumo = Integer.MAX_VALUE;
+		for (int k=0; k<contas.length; k++){
+			if (contas.get(k).getValorAPagar() < menorConsumo){
+				menorConsumo = contas.get(k).getValorAPagar();
+				
+			}
+		}
+		return menorConsumo;
 	}
 	public void verificaMaiorConsumo(){
 		
